@@ -52,8 +52,9 @@ const index = async (req, res) => {
 
 const create = async(req, res) => {
     let m = new Comment();
-    m.comment = req.body.comment;
+    m.text = req.body.text;
     m.username = req.body.username;
+    m.comment_id = req.body.comment_id;
      try {
         let doc = await m.save();
         res.json({
