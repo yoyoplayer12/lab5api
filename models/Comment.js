@@ -14,7 +14,7 @@ const CommentSchema = new Schema({
         type: String,
         required: true,
     },
-    comment_id: {
+    commentId: {
         type: Number,
         required: true,
     },

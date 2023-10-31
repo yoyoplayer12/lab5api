@@ -54,7 +54,7 @@ const create = async(req, res) => {
     let m = new Comment();
     m.text = req.body.text;
     m.username = req.body.username;
-    m.comment_id = req.body.comment_id;
+    m.commentId = req.body.commentId;
      try {
         let doc = await m.save();
         res.json({
