@@ -16,12 +16,12 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Connected to MongoDB!");
 //import routes
-const messagesRouter = require("./routes/api/v1/messages");
+const commentsRouter = require("./routes/api/v1/comments");
 
 app.use(express.json());
 
 //use routes
-app.use("/api/v1/messages", messagesRouter);
+app.use("/api/v1/comments", commentsRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

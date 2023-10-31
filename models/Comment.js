@@ -1,8 +1,8 @@
-//create mongoose schema for messages
+//create mongoose schema for comments
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const MessageSchema = new Schema({
-    message: {
+const CommentSchema = new Schema({
+    text: {
         type: String,
         required: true,
     },
@@ -14,7 +14,11 @@ const MessageSchema = new Schema({
         type: String,
         required: true,
     },
+    comment_id: {
+        type: Number,
+        required: true,
+    },
 });
 //export model to use in index.js
-const Message = mongoose.model("Message", MessageSchema);
-module.exports = Message;
+const Comment = mongoose.model("Comment", CommentSchema);
+module.exports = Comment;

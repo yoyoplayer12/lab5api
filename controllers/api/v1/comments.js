@@ -1,41 +1,41 @@
-//require the messages model
-const Message = require("../../../models/Message");
+//require the comments model
+const Comment = require("../../../models/Comment");
 
 const index = async (req, res) => {
-    let messages;
+    let comments;
     if(req.query.user) {
         try {
-            let messages = await Message.find({ username: req.query.user });
-            if (messages.length > 0) {
+            let comments = await Comment.find({ username: req.query.user });
+            if (comments.length > 0) {
                 res.json({
                     "status": "success",
-                    "message": "GETTING messages for user " + req.query.user,
+                    "comment": "GETTING comments for user " + req.query.user,
                     "data": {
-                        "messages": messages
+                        "comment": comments
                     }
                 });
             } else {
                 res.json({
                     "status": "error",
-                    "message": "No messages found for user " + req.query.user
+                    "comment": "No comments found for user " + req.query.user
                 });
             }
         } catch (err) {
             console.error(err);
             res.json({
                 "status": "error",
-                "message": "An error occurred while getting the messages."
+                "comment": "An error occurred while getting the comments."
             });
         }
     }
     else {
         try{
-            messages = await Message.find({});
+            comments = await Comment.find({});
             res.json({
                 status: "success",
-                message: "GETTING messages",
+                comment: "GETTING comments",
                 data: [{
-                    messages: messages
+                    comments: comments
                 }],
             });
         }
@@ -43,7 +43,7 @@ const index = async (req, res) => {
             console.error(err);
             res.json({
                 status: "error",
-                message: "An error occurred while getting the messages.",
+                comment: "An error occurred while getting the comments.",
             });
         }
     }
@@ -51,97 +51,97 @@ const index = async (req, res) => {
 };
 
 const create = async(req, res) => {
-    let m = new Message();
-    m.message = req.body.message;
+    let m = new Comment();
+    m.comment = req.body.comment;
     m.username = req.body.username;
      try {
         let doc = await m.save();
         res.json({
             "status": "success",
-            "message": "Message sent",
+            "comment": "comment sent",
             "data": {
-                "message": doc
+                "comment": doc
             }
         });
     } catch (err) {
         console.error(err);
         res.json({
             "status": "error",
-            "message": "Could not save message"
+            "comment": "Could not save comment"
         });
     }
 
 };
 const show = async (req, res) => {
     try {
-        let message = await Message.findById(req.params.id);
-        if (message) {
+        let comment = await Comment.findById(req.params.id);
+        if (comment) {
             res.json({
                 "status": "success",
-                "message": "GETTING message with ID " + req.params.id,
+                "comment": "GETTING comment with ID " + req.params.id,
                 "data": {
-                    "message": message
+                    "comment": comment
                 }
             });
         } else {
             res.json({
                 "status": "error",
-                "message": "Message with ID " + req.params.id + " not found."
+                "comment": "Comment with ID " + req.params.id + " not found."
             });
         }
     } catch (err) {
         console.error(err);
         res.json({
             "status": "error",
-            "message": "An error occurred while retrieving the message."
+            "comment": "An error occurred while retrieving the comment."
         });
     };
 }
 const update = async (req, res) => {
     try {
-        let message = await Message.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (message) {
+        let comment = await Comment.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (comments) {
             res.json({
                 "status": "success",
-                "message": "UPDATED message with ID " + req.params.id,
+                "comment": "UPDATED comment with ID " + req.params.id,
                 "data": {
-                    "message": message
+                    "comment": comment
                 }
             });
         } else {
             res.json({
                 "status": "error",
-                "message": "Message with ID " + req.params.id + " not found."
+                "comment": "Comment with ID " + req.params.id + " not found."
             });
         }
     } catch (err) {
         console.error(err);
         res.json({
             "status": "error",
-            "message": "An error occurred while updating the message."
+            "comment": "An error occurred while updating the comment."
         });
     }
 };
 const destroy = async (req, res) => {
     try {
-        let message = await Message.findByIdAndDelete(req.params.id);
-        console.log(message);
-        if (message) {
+        let comment = await Comment.findByIdAndDelete(req.params.id);
+        console.log(comment);
+        if (comment) {
             res.json({
                 "status": "success",
-                "message": "DELETED message with ID " + req.params.id
+                "comment": "DELETED comment with ID " + req.params.id
             });
         } else {
             res.json({
                 "status": "error",
-                "message": "Message with ID " + req.params.id + " not found."
+                "comment": "Comment with ID " + req.params.id + " not found."
             });
         }
     } catch (err) {
         console.error(err);
         res.json({
             "status": "error",
-            "message": "An error occurred while deleting the message."
+            "comment": "An error occurred while deleting the comment."
         });
     }
 };
