@@ -14,8 +14,8 @@ const CommentSchema = new Schema({
         type: String,
         required: true,
     },
-    commentId: {
-        type: Number,
+    videoUrl: {
+        type: String,
         required: true,
     },
 });
