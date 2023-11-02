@@ -98,6 +98,36 @@ const show = async (req, res) => {
         });
     };
 }
+const showByVideo = async (req, res) => {
+    try {
+        let comments = await Comment.find({ videoUrl: req.params.url });
+        if (comments.length > 0) {
+            res.json({
+                "status": "success",
+                "comment": "GETTING comments for video " + req.params.url,
+                "data": {
+                    "comment": comments
+                }
+            });
+        }
+        else {
+            res.json({
+                "status": "success",
+                "comment": "No comments found for video " + req.params.url,
+                "data": {
+                    "comment": "There are no comments yet."
+                }
+            });
+        }
+    }
+    catch (err) {
+        console.error(err);
+        res.json({
+            "status": "error",
+            "comment": "An error occurred while retrieving the comments."
+        });
+    };
+}
 const update = async (req, res) => {
     try {
         let comment = await Comment.findByIdAndUpdate(req.params.id, req.body, { new: true });
