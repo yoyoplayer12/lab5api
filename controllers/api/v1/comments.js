@@ -101,7 +101,6 @@ const show = async (req, res) => {
 const showByVideo = async (req, res) => {
     try {
         let comments = await Comment.find({ videoUrl: req.params.url });
-        console.log(comments);
         if (comments.length > 0) {
             res.json({
                 "status": "success",
