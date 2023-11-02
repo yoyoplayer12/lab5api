@@ -181,5 +181,6 @@ const destroy = async (req, res) => {
 module.exports.index = index;
 module.exports.create = create;
 module.exports.show = show;
+module.exports.showByVideo = showByVideo;
 module.exports.update = update;
 module.exports.destroy = destroy;
