@@ -6,9 +6,8 @@ const router = express.Router();
 //import controller
 const commentsController = require("../../../controllers/api/v1/comments");
 
-
-router.get("/", commentsController.index);
 router.get("/videos", commentsController.indexVideo);
+router.get("/", commentsController.index);
 router.get("/:id", commentsController.show);
 router.get("/video/:url", commentsController.showByVideo);
 router.post("/", commentsController.create);

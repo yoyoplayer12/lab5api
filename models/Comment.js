@@ -38,7 +38,7 @@ const VideoSchema = new Schema({
     },
 });
 //export model to use in index.js
-const Comment = mongoose.model("Comment", CommentSchema);
-const Video = mongoose.model("Video", VideoSchema);
+const Comment = mongoose.model("Comment", CommentSchema, "comments");
+const Video = mongoose.model("Video", VideoSchema, "videos");
 module.exports = Comment;
 module.exports = Video;
