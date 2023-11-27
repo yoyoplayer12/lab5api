@@ -1,6 +1,6 @@
 //require the comments model
 const Comment = require("../../../models/Comment");
-const Video = require("../../../models/Comment");
+const Video = require("../../../models/Video");
 
 const index = async (req, res) => {
     let comments;
