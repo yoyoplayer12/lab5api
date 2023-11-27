@@ -15,5 +15,6 @@ router.put("/:id", commentsController.update);
 router.delete("/:id", commentsController.destroy);
 
 router.post("/videos", commentsController.createVideo);
+router.get("/videos", commentsController.indexVideo);
 
 module.exports = router;

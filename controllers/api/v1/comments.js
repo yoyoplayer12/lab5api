@@ -1,5 +1,6 @@
 //require the comments model
 const Comment = require("../../../models/Comment");
+const Video = require("../../../models/Comment");
 
 const index = async (req, res) => {
     let comments;
@@ -49,7 +50,26 @@ const index = async (req, res) => {
     }
     
 };
-
+const indexVideo = async (req, res) => {
+    let videos;
+    try{
+        videos = await Video.find({});
+        res.json({
+            status: "success",
+            comment: "GETTING videos",
+            data: [{
+                videos: videos
+            }],
+        });
+    }
+    catch(err){
+        console.error(err);
+        res.json({
+            status: "error",
+            comment: "An error occurred while getting the videos.",
+        });
+    }
+}
 const create = async(req, res) => {
     let m = new Comment();
     m.text = req.body.text;
@@ -208,3 +228,4 @@ module.exports.showByVideo = showByVideo;
 module.exports.update = update;
 module.exports.destroy = destroy;
 module.exports.createVideo = createVideo;
+module.exports.indexVideo = indexVideo;
