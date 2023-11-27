@@ -6,7 +6,7 @@ const router = express.Router();
 //import controller
 const commentsController = require("../../../controllers/api/v1/comments");
 
-
+router.get("/videos", commentsController.indexVideo);
 router.get("/", commentsController.index);
 router.get("/:id", commentsController.show);
 router.get("/video/:url", commentsController.showByVideo);
@@ -15,6 +15,6 @@ router.put("/:id", commentsController.update);
 router.delete("/:id", commentsController.destroy);
 
 router.post("/videos", commentsController.createVideo);
-router.get("/videos", commentsController.indexVideo);
+
 
 module.exports = router;
