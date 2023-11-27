@@ -73,6 +73,28 @@ const create = async(req, res) => {
     }
 
 };
+const createVideo = async (req, res) => {
+    let m = new Video();
+    m.title = req.body.title;
+    m.username = req.body.username;
+    m.videoUrl = req.body.videoUrl;
+    try {
+        let doc = await m.save();
+        res.json({
+            "status": "success",
+            "comment": "video posted",
+            "data": {
+                "comment": doc
+            }
+        });
+    } catch (err) {
+        console.error(err);
+        res.json({
+            "status": "error",
+            "comment": "Could not save video"
+        });
+    }
+};
 const show = async (req, res) => {
     try {
         let comment = await Comment.findById(req.params.id);
@@ -98,6 +120,7 @@ const show = async (req, res) => {
         });
     };
 }
+
 const showByVideo = async (req, res) => {
     try {
         let comments = await Comment.find({ videoUrl: req.params.url });
@@ -184,3 +207,4 @@ module.exports.show = show;
 module.exports.showByVideo = showByVideo;
 module.exports.update = update;
 module.exports.destroy = destroy;
+module.exports.createVideo = createVideo;
